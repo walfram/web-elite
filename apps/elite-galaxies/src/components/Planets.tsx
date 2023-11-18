@@ -1,8 +1,12 @@
-import {economyOf, galaxy, governmentOf, speciesOf} from "../galaxy/classic-elite";
-import {Table} from "reactstrap";
+import {economyOf, galaxy, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite";
+import {Button, Table} from "reactstrap";
 import {Seed} from "../galaxy/seed";
 import {useContext} from "react";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
+import {RiGovernmentLine, RiInformationLine} from "react-icons/ri";
+import {LiaIndustrySolid} from "react-icons/lia";
+import {GrTransaction} from "react-icons/gr";
+import {TbUfo} from "react-icons/tb";
 
 export default function Planets() {
 
@@ -11,6 +15,8 @@ export default function Planets() {
   console.log('using seed', seed);
 
   const planets = galaxy(seed);
+
+  const onPlanetInfo = (planet : Planet) => console.log('click on government', planet);
 
   const bodyItems = planets.map((planet, idx) => {
     return (
@@ -25,12 +31,17 @@ export default function Planets() {
         <td>{planet.population}</td>
         <td>{planet.productivity}</td>
         <td>{speciesOf(planet.species)}</td>
+        <td>
+          <Button size="sm" onClick={() => onPlanetInfo(planet)}><RiInformationLine /></Button>
+          <Button size="sm" onClick={() => onPlanetMarket(planet)}><GrTransaction /></Button>
+          <Button size="sm" onClick={() => onPlanetEquipment(planet)}><TbUfo /></Button>
+        </td>
       </tr>
     );
   });
 
   return (
-    <Table size="sm">
+    <Table size="sm" hover>
       <thead>
       <tr>
         <th>#</th>
@@ -43,6 +54,7 @@ export default function Planets() {
         <th>population</th>
         <th>productivity</th>
         <th>species</th>
+        <th>view</th>
       </tr>
       </thead>
       <tbody>

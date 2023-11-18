@@ -16,7 +16,7 @@ export default function Layout() {
   return (
     <GalaxySeedContext.Provider value={seed}>
 
-      <Navbar expand={true}>
+      <Navbar expand={true} className="bg-dark-subtle">
         <NavbarToggler onClick={toggle}/>
         <Collapse isOpen={isOpen} navbar>
 
