@@ -1,8 +1,7 @@
-import {economyOf, galaxy, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite";
+import {economyOf, galaxy, governmentOf, speciesOf} from "../galaxy/classic-elite";
 import {Table} from "reactstrap";
 import {Seed} from "../galaxy/seed";
-import {useOutletContext} from "react-router-dom";
-import {useContext, useEffect, useRef, useState} from "react";
+import {useContext} from "react";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
 
 export default function Planets() {

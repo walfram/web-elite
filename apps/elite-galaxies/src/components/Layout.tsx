@@ -2,7 +2,7 @@ import {Outlet} from "react-router-dom";
 import {useState} from "react";
 import {Collapse, Navbar, NavbarToggler} from "reactstrap";
 import SeedSelect from "./SeedSelect";
-import {classicSeed, nextSeed} from "../galaxy/seed";
+import {classicSeed} from "../galaxy/seed";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
 
 export default function Layout() {
@@ -14,23 +14,21 @@ export default function Layout() {
   console.log('setting seed to', seed);
 
   return (
-    <>
-      <GalaxySeedContext.Provider value={seed}>
+    <GalaxySeedContext.Provider value={seed}>
 
-        <Navbar expand={true}>
-          <NavbarToggler onClick={toggle}/>
-          <Collapse isOpen={isOpen} navbar>
+      <Navbar expand={true}>
+        <NavbarToggler onClick={toggle}/>
+        <Collapse isOpen={isOpen} navbar>
 
-            <SeedSelect/>
+          <SeedSelect/>
 
-          </Collapse>
-        </Navbar>
+        </Collapse>
+      </Navbar>
 
-        <main className="p-2">
-          <Outlet />
-        </main>
+      <main className="p-2">
+        <Outlet/>
+      </main>
 
-      </GalaxySeedContext.Provider>
-    </>
+    </GalaxySeedContext.Provider>
   );
 }
