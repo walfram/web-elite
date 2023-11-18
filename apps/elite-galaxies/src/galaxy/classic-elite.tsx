@@ -125,16 +125,16 @@ export function galaxy(seed: Seed): Planet[] {
     };
 
     const pair1 = 2 * ((seed.w2 >> 8) & 31);
-    tweakSeed(seed);
+    seed = tweakSeed(seed);
 
     const pair2 = 2 * ((seed.w2 >> 8) & 31);
-    tweakSeed(seed);
+    seed = tweakSeed(seed);
 
     const pair3 = 2 * ((seed.w2 >> 8) & 31);
-    tweakSeed(seed);
+    seed = tweakSeed(seed);
 
     const pair4 = 2 * ((seed.w2 >> 8) & 31);
-    tweakSeed(seed);
+    seed = tweakSeed(seed);
 
     const name: string[] = [];
     name.push(pairs[pair1], pairs[pair1 + 1], pairs[pair2], pairs[pair2 + 1], pairs[pair3], pairs[pair3 + 1]);

@@ -1,41 +1,36 @@
 import {Outlet} from "react-router-dom";
-import {GalaxySeedContext} from "../context/GalaxySeedContext";
-import {useContext, useState} from "react";
+import {useState} from "react";
 import {Collapse, Navbar, NavbarToggler} from "reactstrap";
 import SeedSelect from "./SeedSelect";
+import {classicSeed, nextSeed} from "../galaxy/seed";
+import {GalaxySeedContext} from "../context/GalaxySeedContext";
 
 export default function Layout() {
 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const seed = useContext(GalaxySeedContext);
+  const seed = classicSeed();
+  console.log('setting seed to', seed);
 
   return (
     <>
-
       <GalaxySeedContext.Provider value={seed}>
-        {/*<input type="radio" name="seed" value="0x5A4A,0x0248,0xB753"
-               defaultChecked={true}/> classic {formattedSeed(seed)}
-        <input type="radio" name="seed" value="custom"/> custom <input name="seed" type="text"
-                                                                       placeholder="hex seed 6 bytes"/>*/}
 
         <Navbar expand={true}>
           <NavbarToggler onClick={toggle}/>
           <Collapse isOpen={isOpen} navbar>
 
-            <SeedSelect />
+            <SeedSelect/>
 
           </Collapse>
         </Navbar>
 
         <main className="p-2">
-          <Outlet/>
+          <Outlet />
         </main>
 
       </GalaxySeedContext.Provider>
-
     </>
-  )
-    ;
+  );
 }

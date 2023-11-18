@@ -13,6 +13,7 @@ function twist(n: number): number {
   return ((256 * rotateLeft(n >> 8)) + rotateLeft(n & 255))
 }
 
+// returns next galaxy's seed, 8 twists return to 1st galaxy
 export function nextSeed(seed: Seed): Seed {
   return {
     w0: twist(seed.w0),
@@ -29,9 +30,15 @@ export function classicSeed(): Seed {
   }
 }
 
-export function tweakSeed(seed: Seed): void {
+export function tweakSeed(seed: Seed): Seed {
   const temp = (seed.w0 + seed.w1 + seed.w2) & 0xFFFF;
-  seed.w0 = seed.w1;
-  seed.w1 = seed.w2;
-  seed.w2 = temp;
+  // seed.w0 = seed.w1;
+  // seed.w1 = seed.w2;
+  // seed.w2 = temp;
+
+  return {
+    w0: seed.w1,
+    w1: seed.w2,
+    w2: temp
+  }
 }

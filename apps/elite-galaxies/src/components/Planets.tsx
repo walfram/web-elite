@@ -1,13 +1,15 @@
-import {economyOf, galaxy, governmentOf, speciesOf} from "../galaxy/classic-elite";
-import {useContext} from "react";
-import {GalaxySeedContext} from "../context/GalaxySeedContext";
+import {economyOf, galaxy, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite";
 import {Table} from "reactstrap";
-import {formattedSeed} from "../galaxy/helpers";
+import {Seed} from "../galaxy/seed";
+import {useOutletContext} from "react-router-dom";
+import {useContext, useEffect, useRef, useState} from "react";
+import {GalaxySeedContext} from "../context/GalaxySeedContext";
 
 export default function Planets() {
 
-  const seed = useContext(GalaxySeedContext);
-  console.log('using seed', formattedSeed(seed));
+  // const seed = useOutletContext<Seed>();
+  const seed = useContext<Seed>(GalaxySeedContext);
+  console.log('using seed', seed);
 
   const planets = galaxy(seed);
 
