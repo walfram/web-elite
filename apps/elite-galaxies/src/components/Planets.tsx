@@ -21,7 +21,7 @@ export default function Planets() {
   const onPlanetInfo = (planet: Planet) => {
     setSelectedPlanet(planet);
   };
-  
+
   const onPlanetMarket = (planet: Planet) => console.log('show planet market', planet);
   const onPlanetEquipment = (planet: Planet) => console.log('show planet equipment', planet);
 
@@ -72,7 +72,7 @@ export default function Planets() {
         </tbody>
       </Table>
 
-      {selectedPlanet && <PlanetInfoModal planet={selectedPlanet} callback={() => setSelectedPlanet(null)} />}
+      {selectedPlanet && <PlanetInfoModal activeTab={'general'} planet={selectedPlanet} callback={() => setSelectedPlanet(null)} />}
 
     </>
   );
