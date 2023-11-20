@@ -1,13 +1,16 @@
 import {economyOf, galaxy, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite";
 import {Button, Table} from "reactstrap";
 import {Seed} from "../galaxy/seed";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
 import {RiInformationLine} from "react-icons/ri";
 import {TbUfo} from "react-icons/tb";
 import {GiPayMoney} from "react-icons/gi";
+import PlanetInfoModal from "./PlanetInfoModal";
 
 export default function Planets() {
+
+  const [selectedPlanet, setSelectedPlanet] = useState<Planet | null>(null);
 
   // const seed = useOutletContext<Seed>();
   const seed = useContext<Seed>(GalaxySeedContext);
@@ -15,10 +18,11 @@ export default function Planets() {
 
   const planets = galaxy(seed);
 
-  const onPlanetInfo = (planet : Planet) => console.log('click on government', planet);
-
+  const onPlanetInfo = (planet: Planet) => {
+    setSelectedPlanet(planet);
+  };
+  
   const onPlanetMarket = (planet: Planet) => console.log('show planet market', planet);
-
   const onPlanetEquipment = (planet: Planet) => console.log('show planet equipment', planet);
 
   const bodyItems = planets.map((planet, idx) => {
@@ -30,15 +34,15 @@ export default function Planets() {
         <td>{planet.radius}</td>
         <td>{governmentOf(planet.government)}</td>
         <td>{economyOf(planet.economy)}</td>
-        <td>{planet.techLevel}</td>
+        <td>{planet.techLevel + 1}</td>
         <td>{planet.population}</td>
         <td>{planet.productivity}</td>
         <td>{speciesOf(planet.species)}</td>
         <td>
           <div className="d-flex justify-content-between">
-          <Button size="sm" onClick={() => onPlanetInfo(planet)}><RiInformationLine /></Button>
-          <Button size="sm" onClick={() => onPlanetMarket(planet)}><GiPayMoney /></Button>
-          <Button size="sm" onClick={() => onPlanetEquipment(planet)}><TbUfo /></Button>
+            <Button size="sm" onClick={() => onPlanetInfo(planet)}><RiInformationLine/></Button>
+            <Button size="sm" onClick={() => onPlanetMarket(planet)}><GiPayMoney/></Button>
+            <Button size="sm" onClick={() => onPlanetEquipment(planet)}><TbUfo/></Button>
           </div>
         </td>
       </tr>
@@ -46,25 +50,30 @@ export default function Planets() {
   });
 
   return (
-    <Table size="sm" hover>
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>name</th>
-        <th>x:y</th>
-        <th>radius</th>
-        <th>government</th>
-        <th>economy</th>
-        <th>tech level</th>
-        <th>population</th>
-        <th>productivity</th>
-        <th>species</th>
-        <th>view</th>
-      </tr>
-      </thead>
-      <tbody>
-      {bodyItems}
-      </tbody>
-    </Table>
+    <>
+      <Table size="sm" hover>
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>name</th>
+          <th>x:y</th>
+          <th>radius</th>
+          <th>government</th>
+          <th>economy</th>
+          <th>tech level</th>
+          <th>population</th>
+          <th>productivity</th>
+          <th>species</th>
+          <th style={{width: '150px'}}>view</th>
+        </tr>
+        </thead>
+        <tbody>
+        {bodyItems}
+        </tbody>
+      </Table>
+
+      {selectedPlanet && <PlanetInfoModal planet={selectedPlanet} callback={() => setSelectedPlanet(null)} />}
+
+    </>
   );
 }
