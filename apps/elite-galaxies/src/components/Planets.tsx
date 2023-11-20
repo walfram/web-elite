@@ -6,24 +6,22 @@ import {GalaxySeedContext} from "../context/GalaxySeedContext";
 import {RiInformationLine} from "react-icons/ri";
 import {TbUfo} from "react-icons/tb";
 import {GiPayMoney} from "react-icons/gi";
-import PlanetInfoModal from "./PlanetInfoModal";
+import PlanetInfoModal, {ActiveTab} from "./PlanetInfoModal";
 
 export default function Planets() {
 
   const [selectedPlanet, setSelectedPlanet] = useState<Planet | null>(null);
+  const [activeTab, setActiveTab] = useState<ActiveTab>('general');
 
-  // const seed = useOutletContext<Seed>();
   const seed = useContext<Seed>(GalaxySeedContext);
   console.log('using seed', seed);
 
   const planets = galaxy(seed);
 
-  const onPlanetInfo = (planet: Planet) => {
+  const selectPlanet = (planet: Planet, activeTab: ActiveTab) => {
     setSelectedPlanet(planet);
+    setActiveTab(activeTab);
   };
-
-  const onPlanetMarket = (planet: Planet) => console.log('show planet market', planet);
-  const onPlanetEquipment = (planet: Planet) => console.log('show planet equipment', planet);
 
   const bodyItems = planets.map((planet, idx) => {
     return (
@@ -40,9 +38,9 @@ export default function Planets() {
         <td>{speciesOf(planet.species)}</td>
         <td>
           <div className="d-flex justify-content-between">
-            <Button size="sm" onClick={() => onPlanetInfo(planet)}><RiInformationLine/></Button>
-            <Button size="sm" onClick={() => onPlanetMarket(planet)}><GiPayMoney/></Button>
-            <Button size="sm" onClick={() => onPlanetEquipment(planet)}><TbUfo/></Button>
+            <Button size="sm" onClick={() => selectPlanet(planet, 'general')}><RiInformationLine/></Button>
+            <Button size="sm" onClick={() => selectPlanet(planet, 'market')}><GiPayMoney/></Button>
+            <Button size="sm" onClick={() => selectPlanet(planet, 'equipment')}><TbUfo/></Button>
           </div>
         </td>
       </tr>
@@ -72,7 +70,7 @@ export default function Planets() {
         </tbody>
       </Table>
 
-      {selectedPlanet && <PlanetInfoModal activeTab={'general'} planet={selectedPlanet} callback={() => setSelectedPlanet(null)} />}
+      {selectedPlanet && <PlanetInfoModal activeTab={activeTab} planet={selectedPlanet} callback={() => setSelectedPlanet(null)} />}
 
     </>
   );

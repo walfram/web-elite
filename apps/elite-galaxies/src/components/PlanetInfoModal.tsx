@@ -1,9 +1,11 @@
-import {economyOf, governmentOf, Planet} from "../galaxy/classic-elite";
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Nav, NavItem, NavLink, TabContent, Table, TabPane} from "reactstrap";
+import {Planet} from "../galaxy/classic-elite";
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader, Nav, NavItem, NavLink, TabContent, TabPane} from "reactstrap";
 import {useState} from "react";
 import PlanetInfoGeneral from "./PlanetInfoGeneral";
+import PlanetInfoEquipment from "./PlanetInfoEquipment";
+import PlanetInfoMarket from "./PlanetInfoMarket";
 
-type ActiveTab = 'general' | 'equipment' | 'market';
+export type ActiveTab = 'general' | 'market' | 'equipment';
 
 type PlanetInfoModalProps = {
   planet: Planet;
@@ -32,18 +34,18 @@ export default function PlanetInfoModal({planet, callback, activeTab = 'general'
           </NavItem>
           <NavItem>
             <NavLink
-              active={'equipment' === currentTab}
-              onClick={() => setActiveTab('equipment')}
-            >
-              Equipment
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
               active={'market' === currentTab}
               onClick={() => setActiveTab('market')}
             >
               Market
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              active={'equipment' === currentTab}
+              onClick={() => setActiveTab('equipment')}
+            >
+              Equipment
             </NavLink>
           </NavItem>
         </Nav>
@@ -53,10 +55,12 @@ export default function PlanetInfoModal({planet, callback, activeTab = 'general'
             <PlanetInfoGeneral planet={planet} />
           </TabPane>
 
-          <TabPane tabId="equipment">
+          <TabPane tabId="market">
+            <PlanetInfoMarket planet={planet} />
           </TabPane>
 
-          <TabPane tabId="market">
+          <TabPane tabId="equipment">
+            <PlanetInfoEquipment planet={planet} />
           </TabPane>
         </TabContent>
 
