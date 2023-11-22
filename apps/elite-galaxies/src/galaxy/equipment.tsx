@@ -1,4 +1,3 @@
-import Equipment from "../components/equipment";
 import {Planet} from "./classic-elite";
 
 export type Equipment = {

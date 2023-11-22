@@ -1,6 +1,6 @@
 import {Outlet} from "react-router-dom";
 import {useState} from "react";
-import {Collapse, Navbar, NavbarToggler} from "reactstrap";
+import {Collapse, Nav, Navbar, NavbarToggler, NavItem} from "reactstrap";
 import SeedSelect from "./SeedSelect";
 import {classicSeed} from "../galaxy/seed";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
@@ -17,11 +17,8 @@ export default function Layout() {
     <GalaxySeedContext.Provider value={seed}>
 
       <Navbar expand={true} className="bg-dark-subtle">
-        <NavbarToggler onClick={toggle}/>
         <Collapse isOpen={isOpen} navbar>
-
           <SeedSelect/>
-
         </Collapse>
       </Navbar>
 
