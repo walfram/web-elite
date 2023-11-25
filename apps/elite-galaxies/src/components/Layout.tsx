@@ -1,9 +1,9 @@
 import {Outlet} from "react-router-dom";
 import {useState} from "react";
 import {Collapse, Nav, Navbar, NavbarToggler, NavItem} from "reactstrap";
-import SeedSelect from "./SeedSelect";
 import {classicSeed} from "../galaxy/seed";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
+import SeedForm from "./SeedForm";
 
 export default function Layout() {
 
@@ -18,7 +18,7 @@ export default function Layout() {
 
       <Navbar expand={true} className="bg-dark-subtle">
         <Collapse isOpen={isOpen} navbar>
-          <SeedSelect/>
+          <SeedForm />
         </Collapse>
       </Navbar>
 
