@@ -13,10 +13,10 @@ export default function Planets() {
   const [selectedPlanet, setSelectedPlanet] = useState<Planet | null>(null);
   const [activeTab, setActiveTab] = useState<ActiveTab>('general');
 
-  const {seed, updateSeed} = useContext(GalaxySeedContext);
-  console.log('using seed', seed);
+  const {contextSeed, updateContextSeed} = useContext(GalaxySeedContext);
+  console.log('using seed', contextSeed);
 
-  const planets = galaxy(seed);
+  const planets = galaxy(contextSeed);
 
   const selectPlanet = (planet: Planet, activeTab: ActiveTab) => {
     setSelectedPlanet(planet);

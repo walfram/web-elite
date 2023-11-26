@@ -10,15 +10,15 @@ export default function Layout() {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
-  const [seed, setSeed] = useState(classicSeed());
-  console.log('setting seed to', seed);
+  const [contextSeed, setSeed] = useState(classicSeed());
+  console.log('setting seed to', contextSeed);
 
-  const updateSeed = (upd: Seed) => {
+  const updateContextSeed = (upd: Seed) => {
     setSeed(upd);
   }
 
   return (
-    <GalaxySeedContext.Provider value={{seed, updateSeed}}>
+    <GalaxySeedContext.Provider value={{contextSeed, updateContextSeed}}>
 
       <Navbar expand={true} className="bg-dark-subtle">
         <Collapse isOpen={isOpen} navbar>
