@@ -1,42 +1,16 @@
 import {Button, Input, InputGroup, InputGroupText} from "reactstrap";
-import {formatAsHex, formattedSeed} from "../galaxy/helpers";
-import {ChangeEvent, useContext, useEffect, useState} from "react";
+import {formatAsHex} from "../galaxy/helpers";
+import {useContext} from "react";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
-import {classicSeed} from "../galaxy/seed";
 
 export default function SeedForm() {
 
-  const {contextSeed, updateContextSeed} = useContext(GalaxySeedContext);
-  const [seed, setSeed] = useState(contextSeed);
-  console.log("render", formattedSeed(contextSeed));
+  const {state, dispatch} = useContext(GalaxySeedContext);
 
-  const onClassicSeedClick = () => {
-    updateContextSeed(classicSeed());
-    // setSeed(contextSeed); // not sure
-  }
+  const {seed} = state;
 
-  const onRandomSeedClick = () => {
-    const e0 = Math.round(Math.random() * 0x10000);
-    const e1 = Math.round(Math.random() * 0x10000);
-    const e2 = Math.round(Math.random() * 0x10000);
-
-    updateContextSeed({
-      w0: e0,
-      w1: e1,
-      w2: e2
-    });
-
-    // setSeed(contextSeed);
-  }
-
-  useEffect(() => {
-    console.log("context seed changed to", formattedSeed(contextSeed));
-    setSeed(contextSeed);
-  }, [contextSeed]);
-
-  const changeSeed = (e : ChangeEvent<HTMLInputElement>) => {
-    console.log("change seed", e);
-  }
+  const onClassicSeedClick = () => console.log('use classic seed');
+  const onRandomSeedClick = () => console.log('use random seed');
 
   return (
 
@@ -53,21 +27,21 @@ export default function SeedForm() {
       <div className="px-1">
         <InputGroup>
           <InputGroupText>w0</InputGroupText>
-          <Input type="text" placeholder={formatAsHex(seed.w0)} value={formatAsHex(seed.w0)} onChange={changeSeed}/>
+          <Input type="text" placeholder={formatAsHex(seed.w0)} defaultValue={formatAsHex(seed.w0)}/>
         </InputGroup>
       </div>
 
       <div className="px-1">
         <InputGroup>
           <InputGroupText>w1</InputGroupText>
-          <Input type="text" placeholder={formatAsHex(seed.w1)} value={formatAsHex(seed.w1)}/>
+          <Input type="text" placeholder={formatAsHex(seed.w1)} defaultValue={formatAsHex(seed.w1)}/>
         </InputGroup>
       </div>
 
       <div className="px-1">
         <InputGroup>
           <InputGroupText>w2</InputGroupText>
-          <Input type="text" placeholder={formatAsHex(seed.w2)} value={formatAsHex(seed.w2)}/>
+          <Input type="text" placeholder={formatAsHex(seed.w2)} defaultValue={formatAsHex(seed.w2)}/>
         </InputGroup>
       </div>
 
