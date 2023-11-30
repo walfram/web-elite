@@ -1,16 +1,22 @@
 import {Button, Input, InputGroup, InputGroupText} from "reactstrap";
 import {formatAsHex} from "../galaxy/helpers";
-import {useContext} from "react";
+import {ChangeEvent, useContext, useState} from "react";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
 
 export default function SeedForm() {
+  console.log('seed form render');
 
   const {state, dispatch} = useContext(GalaxySeedContext);
 
   const {seed} = state;
 
-  const onClassicSeedClick = () => console.log('use classic seed');
-  const onRandomSeedClick = () => console.log('use random seed');
+  // const [seed, setSeed] = useState(state.seed);
+
+  const onClassicSeedClick = () => dispatch({action: "use-classic-seed"});
+  const onRandomSeedClick = () => dispatch({action: "use-random-seed"});
+  const onW0Change = (event: ChangeEvent<HTMLInputElement>) => dispatch({action: "update-w0", payload: event.currentTarget.value});
+  const onW1Change = (event: ChangeEvent<HTMLInputElement>) => dispatch({action: "update-w1", payload: event.currentTarget.value});
+  const onW2Change = (event: ChangeEvent<HTMLInputElement>) => dispatch({action: "update-w2", payload: event.currentTarget.value});
 
   return (
 
@@ -27,21 +33,21 @@ export default function SeedForm() {
       <div className="px-1">
         <InputGroup>
           <InputGroupText>w0</InputGroupText>
-          <Input type="text" placeholder={formatAsHex(seed.w0)} defaultValue={formatAsHex(seed.w0)}/>
+          <Input type="text" value={formatAsHex(seed.w0)} onChange={onW0Change}/>
         </InputGroup>
       </div>
 
       <div className="px-1">
         <InputGroup>
           <InputGroupText>w1</InputGroupText>
-          <Input type="text" placeholder={formatAsHex(seed.w1)} defaultValue={formatAsHex(seed.w1)}/>
+          <Input type="text" value={formatAsHex(seed.w1)} onChange={onW1Change}/>
         </InputGroup>
       </div>
 
       <div className="px-1">
         <InputGroup>
           <InputGroupText>w2</InputGroupText>
-          <Input type="text" placeholder={formatAsHex(seed.w2)} defaultValue={formatAsHex(seed.w2)}/>
+          <Input type="text" value={formatAsHex(seed.w2)} onChange={onW2Change}/>
         </InputGroup>
       </div>
 

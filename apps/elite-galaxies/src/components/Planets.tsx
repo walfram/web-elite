@@ -7,6 +7,7 @@ import {RiInformationLine} from "react-icons/ri";
 import {TbUfo} from "react-icons/tb";
 import {GiPayMoney} from "react-icons/gi";
 import PlanetInfoModal, {ActiveTab} from "./PlanetInfoModal";
+import {formattedSeed} from "../galaxy/helpers";
 
 export default function Planets() {
 
@@ -15,6 +16,8 @@ export default function Planets() {
 
   const {state, dispatch} = useContext(GalaxySeedContext);
   const {seed} = state;
+
+  console.log(`using seed ${formattedSeed(seed)}`);
 
   const planets = galaxy(seed);
 

@@ -1,7 +1,6 @@
 import {Outlet} from "react-router-dom";
 import {useState} from "react";
 import {Collapse, Navbar} from "reactstrap";
-import {classicSeed, Seed} from "../galaxy/seed";
 import GalaxySeedProvider from "../context/GalaxySeedContext";
 import SeedForm from "./SeedForm";
 

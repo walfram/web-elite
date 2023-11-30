@@ -13,8 +13,7 @@ type PlanetInfoModalProps = {
   activeTab: ActiveTab;
 };
 
-export default function PlanetInfoModal({planet, callback, activeTab = 'general'} : PlanetInfoModalProps) {
-
+export default function PlanetInfoModal({planet, callback, activeTab = 'general'}: PlanetInfoModalProps) {
   const [currentTab, setActiveTab] = useState<ActiveTab>(activeTab);
 
   return (
@@ -52,15 +51,15 @@ export default function PlanetInfoModal({planet, callback, activeTab = 'general'
 
         <TabContent activeTab={activeTab}>
           <TabPane tabId="general">
-            <PlanetInfoGeneral planet={planet} />
+            <PlanetInfoGeneral planet={planet}/>
           </TabPane>
 
           <TabPane tabId="market">
-            <PlanetInfoMarket planet={planet} />
+            <PlanetInfoMarket planet={planet}/>
           </TabPane>
 
           <TabPane tabId="equipment">
-            <PlanetInfoEquipment planet={planet} />
+            <PlanetInfoEquipment planet={planet}/>
           </TabPane>
         </TabContent>
 
