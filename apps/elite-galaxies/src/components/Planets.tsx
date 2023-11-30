@@ -1,6 +1,5 @@
 import {economyOf, galaxy, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite";
 import {Button, Table} from "reactstrap";
-import {Seed} from "../galaxy/seed";
 import {useContext, useState} from "react";
 import {GalaxySeedContext} from "../context/GalaxySeedContext";
 import {RiInformationLine} from "react-icons/ri";
