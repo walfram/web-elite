@@ -57,7 +57,7 @@ export default function SeedForm() {
           <label>Galaxy</label>
           <select onChange={onGalaxyIdChange}>
             {
-              [...Array(10)].map((galaxyId, idx) => <option value={idx}>{galaxyId}</option>)
+              [...Array(8)].map((galaxyId, idx) => <option value={idx}>{galaxyId}</option>)
             }
           </select>
         </div>
