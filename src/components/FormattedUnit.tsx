@@ -9,16 +9,16 @@ export default function FormattedUnit({value} : FormattedUnitProps) {
 
   switch (value) {
     case Unit.TONNES:
-      formatted = 'T'; break;
+      formatted = "T"; break;
 
     case Unit.KILOGRAMS:
-      formatted = 'Kg'; break;
+      formatted = "Kg"; break;
 
     case Unit.GRAMS:
-      formatted = 'g'; break;
+      formatted = "g"; break;
 
     default:
-      formatted = 'Unknown unit';
+      formatted = "Unknown unit";
   }
 
   return (

@@ -20,8 +20,8 @@ export default function PlanetInfoMarket({planet}: { planet: Planet }) {
           <tbody>
           {localMarket(planet).map((offer, idx) => {
             return (
-              <tr key={'offer' + idx} className={offer.commodity.illegal ? 'table-warning' : ''}>
-                <td>{offer.commodity.name} {offer.commodity.illegal && '*'}</td>
+              <tr key={"offer" + idx} className={offer.commodity.illegal ? "table-warning" : ""}>
+                <td>{offer.commodity.name} {offer.commodity.illegal && "*"}</td>
                 <td className="text-end"><FormattedUnit value={offer.commodity.unit}/></td>
                 <td className="text-end"><FormattedPrice value={offer.localPrice}/></td>
                 <td className="text-end">{offer.localQuantity}/<FormattedUnit value={offer.commodity.unit}/></td>

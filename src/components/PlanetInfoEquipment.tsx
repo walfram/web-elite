@@ -17,7 +17,7 @@ export default function PlanetInfoEquipment({planet} : {planet: Planet}) {
           <tbody>
           {equipmentList(planet).map((eq, idx) => {
             return (
-              <tr key={'eq' + idx}>
+              <tr key={"eq" + idx}>
                 <td>{eq.name}</td>
                 <td className="text-end"><FormattedPrice value={eq.price} /></td>
               </tr>

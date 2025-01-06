@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from "../store/store.ts";
 import {changeGalaxyId, changeW0, changeW1, changeW2, switchToClassicSeed, switchToRandomSeed} from "../store/GalaxySlice.ts";
 
 export default function SeedForm() {
-  console.log('SeedForm rendered');
+  console.log("SeedForm rendered");
 
   const seed = useAppSelector(state => state.galaxy.seed);
   const dispatch = useAppDispatch();

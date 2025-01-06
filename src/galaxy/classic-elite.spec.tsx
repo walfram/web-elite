@@ -2,7 +2,7 @@ import {classicSeed} from "./seed.tsx";
 import {Planet, galaxy} from "./classic-elite.tsx";
 import {expect, test} from "vitest";
 
-test('should generate classic 1st galaxy', () => {
+test("should generate classic 1st galaxy", () => {
   const seed = classicSeed();
   const planets : Planet[] = galaxy(seed);
 

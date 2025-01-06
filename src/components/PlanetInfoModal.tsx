@@ -3,7 +3,7 @@ import PlanetInfoGeneral from "./PlanetInfoGeneral.tsx";
 import PlanetInfoEquipment from "./PlanetInfoEquipment.tsx";
 import PlanetInfoMarket from "./PlanetInfoMarket.tsx";
 
-export type ActiveTab = 'general' | 'market' | 'equipment';
+export type ActiveTab = "general" | "market" | "equipment";
 
 type PlanetInfoModalProps = {
   planet: Planet;

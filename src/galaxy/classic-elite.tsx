@@ -113,7 +113,7 @@ export function galaxy(seed: Seed): Planet[] {
 
     planets[i] = {
       id: i.toString(),
-      name: 'raxxla ;)',
+      name: "raxxla ;)",
       position: position,
       radius: 256 * (((seed.w2 >> 8) & 15) + 11) + position.x,
       government: government,

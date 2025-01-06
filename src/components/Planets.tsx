@@ -20,7 +20,7 @@ export default function Planets() {
             <th>population</th>
             <th>productivity</th>
             <th>species</th>
-            <th style={{width: '150px'}}>view</th>
+            <th style={{width: "150px"}}>view</th>
           </tr>
           </thead>
           <tbody>
@@ -56,9 +56,9 @@ function PlanetRow({planet}: PlanetRowProps) {
         <td>{speciesOf(planet.species)}</td>
         <td>
           <div>
-            <button onClick={() => planetInfo(planet, 'general')}>general</button>
-            <button onClick={() => planetInfo(planet, 'market')}>market</button>
-            <button onClick={() => planetInfo(planet, 'equipment')}>equipment</button>
+            <button onClick={() => planetInfo(planet, "general")}>general</button>
+            <button onClick={() => planetInfo(planet, "market")}>market</button>
+            <button onClick={() => planetInfo(planet, "equipment")}>equipment</button>
           </div>
         </td>
       </tr>
