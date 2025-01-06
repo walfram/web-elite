@@ -1,30 +1,50 @@
-import {economyOf, galaxy, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite.tsx";
-import {useContext, useState} from "react";
-import {GalaxySeedContext} from "../context/GalaxySeedContext.tsx";
-import PlanetInfoModal, {ActiveTab} from "./PlanetInfoModal.tsx";
-import {formattedSeed} from "../galaxy/helpers.tsx";
+import {economyOf, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite.tsx";
+import {useAppSelector} from "../store/store.ts";
+import {planetsSelector} from "../store/GalaxySlice.ts";
 
 export default function Planets() {
+  const planets: Planet[] = useAppSelector(planetsSelector);
 
-  const [selectedPlanet, setSelectedPlanet] = useState<Planet | null>(null);
-  const [activeTab, setActiveTab] = useState<ActiveTab>('general');
+  return (
+      <>
+        <table>
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>name</th>
+            <th>x:y</th>
+            <th>radius</th>
+            <th>government</th>
+            <th>economy</th>
+            <th>tech level</th>
+            <th>population</th>
+            <th>productivity</th>
+            <th>species</th>
+            <th style={{width: '150px'}}>view</th>
+          </tr>
+          </thead>
+          <tbody>
+          {planets.map((planet) => <PlanetRow planet={planet} key={planet.id}/>)}
+          </tbody>
+        </table>
 
-  const {state} = useContext(GalaxySeedContext);
-  const {seed} = state;
+        <div>TODO planet modal(s)</div>
+      </>
+  );
+}
 
-  console.log(`using seed ${formattedSeed(seed)}`);
+type PlanetRowProps = {
+  planet: Planet;
+}
 
-  const planets = galaxy(seed);
-
-  const selectPlanet = (planet: Planet, activeTab: ActiveTab) => {
-    setSelectedPlanet(planet);
-    setActiveTab(activeTab);
-  };
-
-  const bodyItems = planets.map((planet, idx) => {
-    return (
-      <tr key={`planet-${idx}`}>
-        <td>{idx}</td>
+function PlanetRow({planet}: PlanetRowProps) {
+  function planetInfo(planet: Planet, showTab: string) {
+    console.log(planet, showTab);
+  }
+  
+  return (
+      <tr>
+        <td>{planet.id}</td>
         <td>{planet.name}</td>
         <td>{planet.position.x}:{planet.position.y}</td>
         <td>{planet.radius}</td>
@@ -35,41 +55,12 @@ export default function Planets() {
         <td>{planet.productivity}</td>
         <td>{speciesOf(planet.species)}</td>
         <td>
-          <div className="d-flex justify-content-between">
-            <button onClick={() => selectPlanet(planet, 'general')}>general</button>
-            <button onClick={() => selectPlanet(planet, 'market')}>market</button>
-            <button onClick={() => selectPlanet(planet, 'equipment')}>equipment</button>
+          <div>
+            <button onClick={() => planetInfo(planet, 'general')}>general</button>
+            <button onClick={() => planetInfo(planet, 'market')}>market</button>
+            <button onClick={() => planetInfo(planet, 'equipment')}>equipment</button>
           </div>
         </td>
       </tr>
-    );
-  });
-
-  return (
-    <>
-      <table>
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>name</th>
-          <th>x:y</th>
-          <th>radius</th>
-          <th>government</th>
-          <th>economy</th>
-          <th>tech level</th>
-          <th>population</th>
-          <th>productivity</th>
-          <th>species</th>
-          <th style={{width: '150px'}}>view</th>
-        </tr>
-        </thead>
-        <tbody>
-        {bodyItems}
-        </tbody>
-      </table>
-
-      {selectedPlanet && <PlanetInfoModal activeTab={activeTab} planet={selectedPlanet} callback={() => setSelectedPlanet(null)} />}
-
-    </>
   );
 }
