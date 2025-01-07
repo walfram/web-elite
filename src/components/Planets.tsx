@@ -1,13 +1,14 @@
-import {economyOf, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite.tsx";
+import {economyOf, galaxy, governmentOf, Planet, speciesOf} from "../galaxy/classic-elite.tsx";
 import {useAppSelector} from "../store/store.ts";
-import {planetsSelector} from "../store/GalaxySlice.ts";
+import "./Planets.css";
 
 export default function Planets() {
-  const planets: Planet[] = useAppSelector(planetsSelector);
+  const seed = useAppSelector(state => state.galaxy.seed);
+  const planets = galaxy(seed);
 
   return (
       <>
-        <table>
+        <table className={"planet-list-table"}>
           <thead>
           <tr>
             <th>#</th>
@@ -41,7 +42,7 @@ function PlanetRow({planet}: PlanetRowProps) {
   function planetInfo(planet: Planet, showTab: string) {
     console.log(planet, showTab);
   }
-  
+
   return (
       <tr>
         <td>{planet.id}</td>
@@ -54,12 +55,10 @@ function PlanetRow({planet}: PlanetRowProps) {
         <td>{planet.population}</td>
         <td>{planet.productivity}</td>
         <td>{speciesOf(planet.species)}</td>
-        <td>
-          <div>
-            <button onClick={() => planetInfo(planet, "general")}>general</button>
-            <button onClick={() => planetInfo(planet, "market")}>market</button>
-            <button onClick={() => planetInfo(planet, "equipment")}>equipment</button>
-          </div>
+        <td className={"buttons"}>
+          <button onClick={() => planetInfo(planet, "information")} className={"information"}></button>
+          <button onClick={() => planetInfo(planet, "market")} className={"market"}></button>
+          <button onClick={() => planetInfo(planet, "equipment")} className={"equipment"}></button>
         </td>
       </tr>
   );

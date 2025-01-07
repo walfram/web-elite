@@ -1,0 +1,41 @@
+.planet-list-table {
+  width: 100%;
+}
+
+.planet-list-table tr:hover {
+  background-color: lightgrey;
+}
+
+.planet-list-table .buttons {
+  white-space: nowrap;
+}
+
+.planet-list-table .buttons button.information {
+  background-color: lightblue;
+  border: 1px solid blue;
+  border-radius: 5px;
+}
+.planet-list-table .buttons button.information::before {
+  content: "\2139";
+  padding: 5px;
+}
+
+.planet-list-table .buttons button.market {
+  background-color: lightgreen;
+  border: 1px solid green;
+  border-radius: 5px;
+}
+.planet-list-table .buttons button.market::before {
+  content: "\1F4CA";
+  padding: 5px;
+}
+
+.planet-list-table .buttons button.equipment {
+  background-color: lightgrey;
+  border: 1px solid grey;
+  border-radius: 5px;
+}
+.planet-list-table .buttons button.equipment::before {
+  content: "\1F6E0";
+  padding: 5px;
+} 

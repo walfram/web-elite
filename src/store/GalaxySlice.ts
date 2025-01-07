@@ -46,4 +46,5 @@ export const {
   switchToClassicSeed, switchToRandomSeed, changeW0, changeW1, changeW2, changeGalaxyId
 } = GalaxySlice.actions;
 
-export const planetsSelector = (state: RootState) => galaxy(state.galaxy.seed);
+// TODO use createSelector
+export const planetsSelector = (state: RootState) => [...galaxy(state.galaxy.seed)];
